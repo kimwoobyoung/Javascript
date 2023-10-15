@@ -1,17 +1,187 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <h1 id="hello">hello</h1>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
 
-    <script>
-        document.getElementById("hello").innerHTML = '안녕';
-        document.getElementById("hello").style.color = 'red';
-    </script>
-</head>
-<body>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand">Navbar</span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav> 
+
+  <ul class="list-group">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li>
+  </ul>
+
+  <div class="black-bg">
+    <div class="white-bg">
+      <h4>로그인하세요</h4>
+      <form action="success.html">
+        <div class="my-3">
+          <input id="email" type="text" class="form-control">
+         </div>
+         <div class="my-3">
+           <input id="password" type="password" class="form-control">
+         </div>
+         <button type="submit" class="btn btn-primary">전송</button>
+         <button type="button" class="btn btn-danger" id="close">닫기</button>
+      </form> 
+    </div>
+  </div> 
+
+  <div class="alert alert-danger">
+    <span id="timeTag">5</span>초 이내 구매시 사은품 증정
+  </div>
+
+  <div class="main-bg">
+    <h4>Shirts on Sale</h4>
+    <button id="login" class="btn btn-danger">로그인</button>
+  </div>
+
+  <span class="badge bg-dark ms-auto mx-3">Dark 🔄</span>
+  
+  <div style="overflow: hidden">
+    <div class="slide-container">
+      <div class="slide-box">
+        <img src="car1.png">
+      </div>
+      <div class="slide-box">
+        <img src="car2.png">
+      </div>
+      <div class="slide-box">
+        <img src="car3.png">
+      </div>
+    </div>
+    <button id="pre">이전</button>
+    <button id="next">다음</button>
+  </div> 
+  
+
+  
+
     
-</body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+
+      
+
+
+      $('.navbar-toggler').on('click', function() {
+        $('.list-group').fadeToggle('show');
+      });
+
+      $('#login').on('click', function() {
+        $('.black-bg').addClass('show-modal');
+      });
+
+      $('#close').on('click', function() {
+        $('.black-bg').removeClass('show-modal');
+      });
+
+      $('form').on('submit', function(e) {
+        var 이메일 = document.getElementById('email').value;
+        var 비번 = document.getElementById('password').value;
+
+          if (이메일 == '') {
+            alert('이메일 입력 안함');
+          }
+          if ( !/\S+@\S+.\S+/.test(이메일)) {
+            alert('이메일 형식 아님');
+            e.preventDefault();
+          }
+          if (/[A-Z]/.test(비번) == false) {
+            alert('페스워드 형식 아님');
+            e.preventDefault();
+          }
+          if (비번.length < 6){
+            alert('패스워드 더 길게 입력');
+          }
+      });
+
+      // 다크모드 시작
+      var count = 0;
+      $('.badge').on('click', function () {
+        count += 1;
+
+        if (count % 2 == 0) {
+          $('.badge').html('Dark 🔄');
+        }else {
+          $('.badge').html('Light 🔄');
+        }
+      });
+      // 다크모드 끝
+
+      // setTimeout 시작
+
+      var count = 5;
+
+      var 타이머 = setInterval(function () {
+       count--;
+       if (count >= 0) {
+        document.querySelector('#timeTag').innerHTML = count;
+      }
+       if (count == 0) {
+        document.querySelector('.alert').style.display ='none';
+      }
+      }, 1000);
+
+      // clearTimeout(타이머); 타이머 변수에 넣어서 원할 때 삭제
+
+      // 슬라이드 캐러셀 시작
+      var photoCount = 1;
+
+      $('#pre').on('click', function() {
+        photoCount--;
+        if (photoCount < 1) {
+          photoCount = 3; // 마지막 슬라이드로 이동
+        }
+        updateSlide();
+      });
+
+      $('#next').on('click', function() {
+        photoCount++;
+        if (photoCount > 3) {
+          photoCount = 1; // 처음 슬라이드로 이동lo
+        }
+        updateSlide();
+      });
+
+      function updateSlide() {
+        var translate = (photoCount - 1) * -100 + 'vw';
+        $('.slide-container').css('transform', 'translateX(' + translate + ')');
+      }
+      // 슬라이드 캐러셀 끝
+
+      function 함수(a, b) {
+        var result = a * 0.9;
+
+        if (b === true) {
+          result = result - 1.5;
+        }
+        return parseFloat(result.toFixed(2));
+      }
+
+
+      
+
+      
+
+    </script>
+  </body>
 </html>
