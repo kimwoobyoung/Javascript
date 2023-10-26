@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="apple.css">
+</head>
+<body style="background : grey; height : 3000px">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+
+
+    <!-- <div class="grey">
+      <div class="image">
+        <img src="appletv.jpg" width="100%">
+      </div>
+    
+      <div style="clear : both"></div>
+      <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum voluptatibus tenetur explicabo minima sed? Eveniet, impedit? Officia sunt soluta quam. Doloremque sequi iusto provident ut unde eligendi optio a incidunt!</div>
+        
+    </div> -->
+
+    <div class="card-background">
+        <div class="card-box">
+          <img src="card1.png">
+        </div>
+        <div class="card-box">
+          <img src="card2.png">
+        </div>
+        <div class="card-box">
+          <img src="card3.png">
+        </div>
+      </div>
+    
+<script>
+    $(window).scroll(function(){
+        var 높이 = $(window).scrollTop();
+        console.log(높이);
+        // 높이가 650일 때 y = 1, 1150일 때 y = 0 (1차함수)
+        var y = -1/500 * 높이 + 115/50
+        // 높이가 650일 때 z = 1, 1150일 때 z = 0.9
+        var z = (-1/5000) * 높이 + 565/500;
+        $('.card-box').eq(0).css({
+            'opacity': y,
+            'transform': `scale( ${z} )`
+        });
+
+        // 높이가 650일 때 y = 1, 1150일 때 y = 0 (1차함수) 
+        var y2 = -1/1000 * 높이 + 115/50
+        // 높이가 650일 때 z = 1, 1150일 때 z = 0.9
+        var z2 = (-1/6000) * 높이 + 565/500;
+        $('.card-box').eq(1).css({
+            'opacity': y2,
+            'transform': `scale( ${z2} )`
+        });
+    });
+</script>
+
+    </body>
+</html>

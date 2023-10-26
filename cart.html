@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    
+    <div id="cartPage">장바구니 페이지</div>
+
+    <script>
+        var cartItems = JSON.parse(localStorage.getItem('cart'));
+        var cartPageE = $('#cartPage');
+
+        cartItems.forEach(function(item) {
+            var p = $('<p>').text(item);
+            cartPageE.append(p);
+        });
+    </script> 
+
+</body>
+</html>

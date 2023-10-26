@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <ul class="list">
+          <li class="tab-button" data-id="0">Products</li>
+          <li class="tab-button orange" data-id="1">Information</li>
+          <li class="tab-button" data-id="2">Shipping</li>
+          <li class="tab-button" data-id="3">hi</li>
+        </ul>
+        <div class="tab-content" data-id="0">
+          <p>상품설명입니다. Product</p>
+        </div>
+        <div class="tab-content show" data-id="1">
+          <p>스펙설명입니다. Information</p>
+        </div>
+        <div class="tab-content" data-id="2">
+          <p>배송정보입니다. Shipping</p>
+        </div>
+        <div class="tab-content" data-id="3">
+          <p>h. Shipping</p>
+        </div>
+      </div> 
+
+      
+        
+    </form>
+
+      <div class="card-group container">
+        <div class="card">
+          <img src="https://via.placeholder.com/100">
+          <div class="card-body">
+            <h5>Card title</h5>
+            <p>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/100">
+          <div class="card-body">
+            <h5>Card title</h5>
+            <p>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/100">
+          <div class="card-body">
+            <h5>Card title</h5>
+            <p>가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="test">
+
+      </div>
+
+      <form class="container my-5 form-group">
+        <p>상품선택</p>
+        <select class="form-select mt-2">
+          <option>모자</option>
+          <option>셔츠</option>
+          <option>바지</option>
+        </select>
+        <select class="form-select mt-2 form-hide">
+          <option>95</option>
+          <option>100</option>
+        </select>
+    </form>
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="tab.js"></script>
+
+<script>
+  var products = [
+    { id : 0, price : 70000, title : 'Blossom Dress' },
+    { id : 1, price : 50000, title : 'Springfield Shirt' },
+    { id : 2, price : 60000, title : 'Black Monastery' }
+  ];
+  
+  for (i in products) {
+    $('.card-body h5').eq(i).html(products[i].title);
+    $('.card-body p').eq(i).html('가격 : ' + products[i].price);
+  }
+
+  var a = '<p> hi </p>';
+  $('#test').append(a);
+
+  // 상품 선택
+  $('.form-select').on('input', function() {
+    var options = [];
+    var value = $(this).val();
+
+    var shirts = [95, 100];
+    var pants = [28, 30, 32];
+
+    var selectedArray = (value === '바지') ? pants : shirts;
+
+    selectedArray.forEach(function(item) {
+        options.push(`<option>${item}</option>`);
+    });
+
+    var $targetSelect = $('.form-select').eq(1);
+
+    $targetSelect.toggleClass('form-hide', !(value === '셔츠' || value === '바지'));
+    $targetSelect.html(options.join(''));
+  });
+  // 상품 선택 끝
+  var obj = { name : 'kim', age : 20 }
+
+for (var key in obj){
+  console.log(obj[key]);
+}
+
+
+var 출석부 = ['흥민', '영희', '철수', '재석', '철수'];
+
+function 이름찾기(name){
+
+  for (var i = 0; i < 출석부.length; i++) {
+    if (name == 출석부[i]) {
+      return console.log('있다');
+    }
+  }
+}
+// 이름찾기('철수');
+// 이름찾기('박');
+
+function 구구단() {
+  for(var i = 2; i < 10; i++) {
+    for(var j = 1; j <10; j++) {
+      console.log(i*j);
+    }
+  }
+}
+// 구구단();
+
+function 평균점수(a, b) {
+  var sum = 0;
+
+  for(var i = 0; i < a.length; i++) {
+    sum += a[i];
+  }
+  var average = sum / a.length;
+  if(average < b) {
+    console.log(`평균보다 ${b - average}점이 올랐네요`);
+  }else {
+    console.log(`평균보다 ${average - b}점이 떨어졌네요 재수추천`);
+  }
+}
+
+
+
+
+</script>
+
+<script>
+
+  $.get('https://codingapple1.github.io/hello.txt')
+  .done(function(data) {
+    console.log(data)
+  })
+  .fail(function(){
+    console.log('실패')
+  })
+
+  $.get('https://codingapple1.github.io/price.json')
+  .done(function(data) {
+    console.log(data.price);
+  })
+</script>
